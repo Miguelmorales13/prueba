@@ -1,0 +1,1 @@
+export const urlServer = "192.168.1.108";

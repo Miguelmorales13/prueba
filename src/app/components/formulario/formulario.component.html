@@ -1,0 +1,138 @@
+<div class="row">
+    <div class="col-12 text-center">
+        <h3>Formulario de Persona</h3>
+        <h5>Persona con todos los atributos</h5>
+    </div>
+    <div class="col-12 col-md-6">
+        <form class="row" [formGroup]="formulario" (submit)="guardarUno()">
+            <div class="col-12 text-center">
+            </div>
+            <div class="col-12 form-group">
+                <input type="text" name="nombre" id="nombre" class="form-control" formControlName="nombre">
+            </div>
+            <div class="col-12 form-group">
+                <input type="number" name="edad" id="edad" class="form-control" formControlName="edad">
+            </div>
+            <div class="col-12 form-group">
+                <select name="sexo" id="sexo" class="form-control" formControlName="sexo">
+                    <option selected>Selccione uno</option>
+                    <option value="H">H</option>
+                    <option value="M">M</option>
+                </select>
+            </div>
+            <div class="col-12 form-group">
+                <input type="number" name="peso" id="peso" class="form-control" formControlName="peso">
+            </div>
+            <div class="col-12 form-group">
+                <input type="number" name="altura" id="altura" class="form-control" formControlName="altura" step="any">
+            </div>
+            <div class="col-12">
+                <button class="btn btn-success" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-12 col-md-6">
+        <pre *ngIf="personaUno">
+            {{ personaUno.toString() | json}} <br>
+            <span *ngIf="personaUno.calculaIMC()===0">
+                Peso ideal
+            </span>
+            <span *ngIf="personaUno.calculaIMC()===1">
+                Peso bajo
+            </span>
+            <span *ngIf="personaUno.calculaIMC()===-1">
+                Sobrepeso
+            </span>
+            <br>
+            {{ personaUno.esMayorDeEdad() ? "Es mayor de edad" :"Es menor de edad"}}
+        </pre>
+    </div>
+    <div class="col-12 text-center">
+        <h5>Persona con todos los atributos menos peso y altura</h5>
+    </div>
+    <div class="col-12 col-md-6">
+        <form class="row" [formGroup]="formularioDos" (submit)="guardarDos()">
+            <div class="col-12 text-center">
+            </div>
+            <div class="col-12 form-group">
+                <input type="text" name="nombre" id="nombre" class="form-control" formControlName="nombre">
+            </div>
+            <div class="col-12 form-group">
+                <input type="number" name="edad" id="edad" class="form-control" formControlName="edad">
+            </div>
+            <div class="col-12 form-group">
+                <select name="sexo" id="sexo" class="form-control" formControlName="sexo">
+                    <option selected>Selccione uno</option>
+                    <option value="H">H</option>
+                    <option value="M">M</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-success" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-12 col-md-6">
+        <pre *ngIf="personaDos">
+            {{ personaDos.toString() | json}} <br>
+            <span *ngIf="personaDos.calculaIMC()===0">
+                Peso ideal
+            </span>
+            <span *ngIf="personaDos.calculaIMC()===1">
+                Peso bajo
+            </span>
+            <span *ngIf="personaDos.calculaIMC()===-1">
+                Sobrepeso
+            </span>
+            <br>
+            {{ personaDos.esMayorDeEdad() ? "Es mayor de edad" :"Es menor de edad"}}
+        </pre>
+    </div>
+    <div class="col-12 text-center">
+        <h5>Persona que guarda los atributos con set</h5>
+    </div>
+    <div class="col-12 col-md-6">
+        <form class="row" [formGroup]="formularioTres" (submit)="guardarTres()">
+            <div class="col-12 text-center">
+            </div>
+            <div class="col-12 form-group">
+                <input type="text" name="nombre" id="nombre" class="form-control" formControlName="nombre">
+            </div>
+            <div class="col-12 form-group">
+                <input type="number" name="edad" id="edad" class="form-control" formControlName="edad">
+            </div>
+            <div class="col-12 form-group">
+                <select name="sexo" id="sexo" class="form-control" formControlName="sexo">
+                    <option selected>Selccione uno</option>
+                    <option value="H">H</option>
+                    <option value="M">M</option>
+                </select>
+            </div>
+            <div class="col-12 form-group">
+                <input type="number" name="peso" id="peso" class="form-control" formControlName="peso">
+            </div>
+            <div class="col-12 form-group">
+                <input type="number" name="altura" id="altura" class="form-control" formControlName="altura" step="any">
+            </div>
+            <div class="col-12">
+                <button class="btn btn-success" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-12 col-md-6">
+        <pre *ngIf="personaTres.nombre">
+            {{ personaTres.toString() | json}} <br>
+            <span *ngIf="personaTres.calculaIMC()===0">
+                Peso ideal
+            </span>
+            <span *ngIf="personaTres.calculaIMC()===1">
+                Peso bajo
+            </span>
+            <span *ngIf="personaTres.calculaIMC()===-1">
+                Sobrepeso
+            </span>
+            <br>
+            {{personaTres.esMayorDeEdad() ? "Es mayor de edad" :"Es menor de edad"}}
+        </pre>
+    </div>
+</div>
