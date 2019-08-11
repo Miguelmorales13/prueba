@@ -1,1 +1,59 @@
-<app-formulario></app-formulario>
+<div class="">
+    <form #formulario="ngForm" (submit)="onSubmit(formulario)">
+        <mat-form-field>
+            <textarea [(ngModel)]="selectedEtiqueta.texto" (keyup)="change" name="texto" matInput
+                placeholder="Textarea"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select [(ngModel)]="selectedEtiqueta.tamano" name="tamano" placeholder="Tamaño">
+                <mat-option *ngFor="let v of valores" [value]="v">{{v}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select [(ngModel)]="selectedEtiqueta.fuente" name="fuente" placeholder="fuentes">
+                <mat-option *ngFor="let v of fuentes" [value]="v">{{v}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-slider [(ngModel)]="contenedor.tamano_qr" thumbLabel placeholder="Tamaño del Qr" name="tamano_qr" min="1.0"
+            max="4.5" step="0.1">
+        </mat-slider>
+        <mat-checkbox [(ngModel)]="selectedEtiqueta.subrayada" name="subrayada">Subrayada</mat-checkbox>
+        <mat-checkbox [(ngModel)]="selectedEtiqueta.negrita" name="negrita">Negrita</mat-checkbox>
+        <mat-checkbox [(ngModel)]="selectedEtiqueta.cursiva" name="cursiva">Cursiva</mat-checkbox>
+        <mat-checkbox [(ngModel)]="edicion" name="edicion">Modo edicion</mat-checkbox>
+        <button (click)="activarPdf()" type="button">Activar</button>
+    </form>
+    <div>
+
+        <div class="contenedor" #tarjeta id="tarjeta" [ngClass]="{'tarjeta':edicion}">
+            <div class="etiqueta" cdkDragBoundary=".contenedor" [ngStyle]="getStyles(etic_uno)"
+                (click)="activarEtiqueta('uno')"
+                [cdkDragFreeDragPosition]="moviedo &&{ x: etic_uno.posx, y: etic_uno.posy }"
+                (cdkDragEnded)="seMovio($event,'uno')" #uno cdkDrag>
+                {{etic_uno.texto}} </div>
+            <div class="etiqueta" [ngStyle]="getStyles(etic_dos)" cdkDragBoundary=".contenedor"
+                (click)="activarEtiqueta('dos')" (cdkDragEnded)="seMovio($event,'dos')"
+                [cdkDragFreeDragPosition]="moviedo &&{ x: etic_dos.posx, y: etic_dos.posy }" #dos cdkDrag>
+                {{etic_dos.texto}}
+            </div>
+            <div class="etiqueta" [ngStyle]="getStyles(etic_tres)" cdkDragBoundary=".contenedor"
+                (click)="activarEtiqueta('tres')" (cdkDragEnded)="seMovio($event,'tres')"
+                [cdkDragFreeDragPosition]=" moviedo &&{ x: etic_tres.posx, y: etic_tres.posy }" #tres cdkDrag>
+                {{etic_tres.texto}}
+            </div>
+            <div class="etiqueta" [ngStyle]="getStyles(etic_cuatro)" cdkDragBoundary=".contenedor"
+                (click)="activarEtiqueta('cuatro')" (cdkDragEnded)="seMovio($event,'cuatro')"
+                [cdkDragFreeDragPosition]=" moviedo &&{ x: etic_cuatro.posx, y: etic_cuatro.posy }" #cuatro cdkDrag>
+                {{etic_cuatro.texto}} </div>
+            <div class="etiqueta" [ngStyle]="getStyles(etic_cinco)" cdkDragBoundary=".contenedor"
+                (click)="activarEtiqueta('cinco')" (cdkDragEnded)="seMovio($event,'cinco')"
+                [cdkDragFreeDragPosition]=" moviedo &&{ x: etic_cinco.posx, y: etic_cinco.posy }" #cinco cdkDrag>
+                {{etic_cinco.texto}} </div>
+            <div class="etiqueta" cdkDragBoundary=".contenedor"
+                [ngStyle]="{'width':contenedor.tamano_qr+'cm','height':contenedor.tamano_qr+'cm'}"
+                (cdkDragEnded)="seMovio($event,'qr')"
+                [cdkDragFreeDragPosition]=" moviedo &&{x:contenedor.qrx,y:contenedor.qry}" #qr cdkDrag> qr </div>
+        </div>
+    </div>
+
+</div>
